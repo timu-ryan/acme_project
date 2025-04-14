@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 
 class Birthday(models.Model):
@@ -8,3 +9,6 @@ class Birthday(models.Model):
     )
     birthday = models.DateField('Дата рождения')
     image = models.ImageField('Фото', upload_to='birthdays_images', blank=True)
+
+    def get_absolute_url(self):
+        return reverse('birthday:detail', kwargs={'pk': self.pk})
